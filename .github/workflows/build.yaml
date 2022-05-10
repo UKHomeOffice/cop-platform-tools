@@ -1,0 +1,36 @@
+---
+name: Build Image
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: cop-platform-tools
+  IMAGE_REPO: quay.io/ukhomeofficedigital
+
+jobs:
+  build:
+    name: Build container image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get date and time
+        id: date
+        run: echo "::set-output name=datetime::$(date +%Y%m%d%H%M)"
+
+      - name: Login to Quay.io
+        uses: docker/login-action@v2
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_ROBOT_TOKEN }}
+
+      - name: Build and push ${{ env.IMAGE_NAME }} container image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          pull: true
+          push: true
+          tags: ${{ env.IMAGE_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.datetime }}
