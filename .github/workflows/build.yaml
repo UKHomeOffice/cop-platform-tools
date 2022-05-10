@@ -22,10 +22,17 @@ jobs:
         id: date
         run: echo "::set-output name=datetime::$(date +%Y%m%d%H%M)"
 
-      - name: Build ${{ env.IMAGE_NAME }} container image
+      - name: Login to Quay.io
+        uses: docker/login-action@v2
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_ROBOT_TOKEN }}
+
+      - name: Build and push ${{ env.IMAGE_NAME }} container image
         uses: docker/build-push-action@v3
         with:
           context: .
           pull: true
-          push: false
-          tags: ${{ env.IMAGE_NAME }}.${{ steps.date.outputs.datetime }}
+          push: true
+          tags: ${{ env.IMAGE_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.datetime }}
