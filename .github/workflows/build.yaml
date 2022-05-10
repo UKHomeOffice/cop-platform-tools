@@ -1,9 +1,7 @@
 ---
 name: Build Image
 on:
-  push:
-    branches:
-      - 'gh-actions'
+  workflow_dispatch:
 
 env:
   IMAGE_NAME: cop-platform-tools
