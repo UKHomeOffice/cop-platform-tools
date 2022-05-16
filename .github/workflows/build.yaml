@@ -33,4 +33,4 @@ jobs:
           context: .
           pull: true
           push: true
-          tags: ${{ env.IMAGE_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.datetime }}
+          tags: ${{ env.IMAGE_REPO }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.datetime }},${{ env.IMAGE_REPO }}/${{ env.IMAGE_NAME }}:latest
