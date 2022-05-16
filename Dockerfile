@@ -2,7 +2,14 @@ FROM docker.io/library/alpine:latest
 
 RUN apk update && \
     apk upgrade && \
-    apk add bash bash-completion vim postgresql-client bind-tools iputils && \
+    apk add \
+            bash \
+            bash-completion \
+            bind-tools \
+            iputils \
+            openssl \
+            postgresql-client \
+            vim && \
     rm -rf /var/cache/apk/*
 
 RUN addgroup -g 1000 ubuntu && \
