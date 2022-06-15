@@ -6,6 +6,7 @@ RUN apk update && \
             bash \
             bash-completion \
             bind-tools \
+            curl \
             iputils \
             openssl \
             postgresql-client \
