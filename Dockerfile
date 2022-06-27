@@ -8,6 +8,7 @@ RUN apk update && \
             bind-tools \
             curl \
             iputils \
+            kcat \
             openssl \
             postgresql-client \
             vim && \
