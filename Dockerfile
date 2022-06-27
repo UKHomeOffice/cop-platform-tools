@@ -11,6 +11,7 @@ RUN apk update && \
             kcat \
             openssl \
             postgresql-client \
+            tree \
             vim && \
     rm -rf /var/cache/apk/*
 
