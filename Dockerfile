@@ -9,6 +9,7 @@ RUN apk update && \
             curl \
             iputils \
             kcat \
+            mysql-client \
             openssl \
             postgresql-client \
             tree \
